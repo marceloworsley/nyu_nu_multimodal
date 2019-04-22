@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<pipeline ssi-v="1">
+	
+	<register>
+		<load name="graphic" />
+		<load name="audio"/>
+		<load name="ioput"/>
+
+	</register>
+	<framework sync="true" slisten="true" sport="1234"/>
+
+	
+	<!-- audio sensor -->
+
+	<sensor create="SocketReader" url="tcp://localhost:7777" format="2" ssr="16000.0" sdim="6" sbyte="4" stype="9">		
+		<output channel="socket" pin="audio"/>
+	</sensor>
+	<!-- visualization -->	
+	<consumer create="WavWriter" path="audio.wav" overwrite="true">
+		<input pin="audio" frame="512"/>		
+	</consumer>
+		
+	<!-- decoration -->
+	<object create="Decorator" icon="true" title="Pipeline">
+		<area pos="0,0,400,600">console</area>
+		<area pos="400,0,400,600">plot*</area>		
+	</object>
+	
+</pipeline>
