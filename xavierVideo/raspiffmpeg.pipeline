@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<pipeline>
+
+	<register>
+		<load name="ssiffmpeg" />
+                <load name="ssiwebsocket" />	
+	</register>
+
+    <framework sync="true" slisten="true" sport="1111"/>
+    <runnable create="ClockEventSender" clock="1000" address="event@clock"/>
+	
+    <sensor create="FFMPEGReader" url="tcp://127.0.0.1:3333" fps="15.0" width="800" height="640" stream="true">		
+		<output channel="video" pin="video" size="2.0s"/>
+    </sensor>
+	
+    <!-- store -->
+    <consumer create="FFMPEGWriter" url="video.mp4">
+	<input pin="video" frame="1" />		
+    </consumer>	
+
+    <object create="websocket" http_root="website" http_port="8000">
+	<listen address="@" />
+    </object>
+
+</pipeline>
