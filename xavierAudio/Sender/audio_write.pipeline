@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<pipeline ssi-v="1">
+	
+	<register>
+		<load name="ssiaudio"/>
+                <load name="ssiioput"/>
+                <load name="ssipython.so"/>
+	</register>
+        <framework sync="true" slisten="true" sport="1111"/>
+	<!-- audio sensor -->
+	<sensor create="Audio" sr="16000.0" option="audio" channels="0,1,2,3,4,5">
+		<output channel="audio" pin="audio"/>
+	</sensor>
+	
+	<!-- storage 
+	
+	Stores the audio stream to a wav file in RIFF format.
+	
+	-->
+	<consumer create="FileWriter" path="audio" type="0" overwrite="true">
+		<input pin="audio" frame="512"/>		
+	</consumer>
+	
+	<consumer create="PythonConsumer" script="respeakerPixels">
+		<input pin="audio" frame="512"/>
+	</consumer>	
+	
+</pipeline>

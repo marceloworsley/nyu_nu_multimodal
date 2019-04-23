@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<pipeline ssi-v="1">
+
+	<register>
+		<load name="ssiaudio"/>
+                <load name="ssiioput"/>
+
+	</register>
+        <framework sync="true" slisten="true" sport="1111"/>
+	<!-- audio sensor -->
+
+	<!-- storage
+
+	Stores the audio stream to a wav file in RIFF format.
+
+	-->
+
+
+	<sensor create="SocketReader" url="udp://192.168.50.10:7777" ssr="16000.0" sdim="6" sbyte="4" stype="9">
+		<output channel="socket" pin="audio"/>
+	</sensor>
+
+        <consumer create="FileWriter" path="audioStream" type="0" overwrite="true">
+ <input pin="audio" frame="512"/>
+        </consumer>
+
+
+</pipeline>

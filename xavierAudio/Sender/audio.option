@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<options>
+    <item name="device" type="CHAR" num="1024" value="ALSA - sysdefault" lock="true" help="audio device name (empty for default)" />
+    <item name="api" type="INT" num="1" value="-1" lock="true" help="preferred audio api (all=-1, DS=1, MME=2, ASIO=3, WASAPI=13 ...)" />
+    <item name="remember" type="BOOL" num="1" value="true" lock="true" help="remember selected audio device" />
+    <item name="sr" type="DOUBLE" num="1" value="1.600000e+04" lock="true" help="sample rate in Hz" />
+    <item name="size" type="UINT" num="1" value="256" lock="true" help="frames per buffer (min 128, max 4096) (deprecated)" />
+    <item name="block" type="UINT" num="1" value="256" lock="true" help="frames per buffer (min 128, max 4096)" />
+    <item name="channels" type="CHAR" num="1024" value="0,1,2,3,4,5" lock="true" help="indices of channels (e.g. 0,5,2)" />
+</options>
